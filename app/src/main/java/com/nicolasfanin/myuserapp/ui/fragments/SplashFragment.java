@@ -8,11 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nicolasfanin.myuserapp.MyUserApplication;
 import com.nicolasfanin.myuserapp.R;
+import com.nicolasfanin.myuserapp.di.DaggerUserAppComponent;
+import com.nicolasfanin.myuserapp.di.UserAppComponent;
+import com.nicolasfanin.myuserapp.mvp.presenters.SplashPresenter;
+
+import javax.inject.Inject;
 
 public class SplashFragment extends BaseFragment {
 
     private View rootView;
+    private UserAppComponent userAppComponent;
+
+    @Inject
+    SplashPresenter presenter;
+
+    public SplashFragment() {
+        userAppComponent = DaggerUserAppComponent.builder().build();
+        userAppComponent.inject(this);
+    }
 
     @Nullable
     @Override

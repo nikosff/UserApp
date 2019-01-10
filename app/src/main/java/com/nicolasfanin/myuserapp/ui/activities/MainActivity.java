@@ -19,13 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         navigator = new Navigator(this, getSupportFragmentManager(), R.id.fragment_container, savedInstanceState);
 
-        //init and go to main screen.
+        //init and go to first screen.
         navigateToSplashScreen();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     public void navigateToSplashScreen() {
