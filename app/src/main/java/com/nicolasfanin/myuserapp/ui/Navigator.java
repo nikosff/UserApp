@@ -15,7 +15,6 @@ public class Navigator {
     private FragmentManager manager;
     private int layoutId;
 
-
     public Navigator (FragmentActivity activity, FragmentManager manager, int layoutId, Bundle savedInstanceState) {
         this.activity = activity;
         this.manager = manager;
@@ -23,16 +22,13 @@ public class Navigator {
     }
 
     /**
-     * Navigate Between Fragments.
+     * Navigate Between Fragments
+     *
+     * @param fragment
      */
-    public void navigateTo(FragmentActivity fragment) {
-
-    }
-
     public void navigateTo(Fragment fragment) {
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.replace(layoutId, fragment);
         fragmentTransaction.commit();
-
     }
 }

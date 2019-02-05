@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.nicolasfanin.myuserapp.R;
 import com.nicolasfanin.myuserapp.ui.Navigator;
+import com.nicolasfanin.myuserapp.ui.fragments.LoginFragment;
 import com.nicolasfanin.myuserapp.ui.fragments.SplashFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SplashFragment.SplashNavigationListener {
 
     private Navigator navigator;
 
@@ -19,24 +20,21 @@ public class MainActivity extends AppCompatActivity {
 
         navigator = new Navigator(this, getSupportFragmentManager(), R.id.fragment_container, savedInstanceState);
 
-        //init and go to main screen.
+        //init and go to first screen.
         navigateToSplashScreen();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     public void navigateToSplashScreen() {
         navigator.navigateTo(new SplashFragment());
     }
 
-    public void navigateToLoginScreen() {
+    @Override
+    public void navigateToHomeScreen() {
 
     }
 
-    public void navigateToHomeScreen() {
-
+    @Override
+    public void navigateToLoginScreen() {
+        navigator.navigateTo(new LoginFragment());
     }
 }
