@@ -1,6 +1,4 @@
 package com.nicolasfanin.myuserapp.mvp.views;
 
-public interface BaseView {
-
-
+public interface LoginView extends BaseView {
 }

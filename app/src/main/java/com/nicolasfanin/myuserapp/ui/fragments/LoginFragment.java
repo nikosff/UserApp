@@ -10,24 +10,23 @@ import android.view.ViewGroup;
 import com.nicolasfanin.myuserapp.R;
 import com.nicolasfanin.myuserapp.di.DaggerUserAppComponent;
 import com.nicolasfanin.myuserapp.di.UserAppComponent;
-import com.nicolasfanin.myuserapp.mvp.presenters.SplashPresenter;
-import com.nicolasfanin.myuserapp.mvp.views.SplashView;
+import com.nicolasfanin.myuserapp.mvp.presenters.LoginPresenter;
+import com.nicolasfanin.myuserapp.mvp.views.LoginView;
 
 import javax.inject.Inject;
 
 /**
- * Splash view.
+ * Login screen
  */
-public class SplashFragment extends BaseFragment implements SplashView {
+public class LoginFragment extends BaseFragment implements LoginView {
 
     private View rootView;
     private UserAppComponent userAppComponent;
-    private SplashNavigationListener navigationListener;
 
     @Inject
-    SplashPresenter presenter;
+    LoginPresenter presenter;
 
-    public SplashFragment() {
+    public LoginFragment() {
         userAppComponent = DaggerUserAppComponent.builder().build();
         userAppComponent.inject(this);
     }
@@ -36,34 +35,14 @@ public class SplashFragment extends BaseFragment implements SplashView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        rootView = inflater.inflate(R.layout.splash_fragment, container, false);
+        rootView = inflater.inflate(R.layout.login_fragment, container, false);
 
         return rootView;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        navigationListener = (SplashNavigationListener) getActivity();
-
-        presenter.waitSplashTimer();
     }
 
     @Override
     public void onResume() {
         presenter.attachView(this);
         super.onResume();
-    }
-
-    @Override
-    public void navigateToLoginScreen() {
-        navigationListener.navigateToLoginScreen();
-    }
-
-    public interface SplashNavigationListener {
-
-        void navigateToHomeScreen();
-
-        void navigateToLoginScreen();
     }
 }
